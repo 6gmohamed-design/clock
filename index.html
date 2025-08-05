@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="clock.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h3>digital clock</h3>
+        <div class="clock">
+            <div class="hour"> <span>00</span>
+                <p>hours</p>
+            </div>
+            <div class="minute"> <span>00</span>
+                <p>minutes</p>
+            </div>
+            <div class="second"> <span>00</span>
+                <p>seconds</p>
+            </div>
+            <div class="type">
+                <p>am</p>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <script>
+        let hour = document.querySelector(".hour span")
+        let minute = document.querySelector(".minute span")
+        let second = document.querySelector(".second span")
+        let type = document.querySelector(".type p")
+        console.log(hour, minute, second, type)
+
+        function clock() {
+            hour.innerHTML = new Date().getHours()
+            minute.innerHTML = new Date().getMinutes()
+            second.innerHTML = new Date().getSeconds()
+            let hourValue = +hour.innerHTML;
+
+            if (hourValue === 0) {
+                hour.innerHTML = 12;
+                type.innerHTML = "AM";
+            } else if (hourValue === 12) {
+                hour.innerHTML = 12;
+                type.innerHTML = "PM";
+            } else if (hourValue > 12) {
+                hour.innerHTML = hourValue - 12;
+                type.innerHTML = "PM";
+            } else {
+                hour.innerHTML = hourValue;
+                type.innerHTML = "AM";
+            }
+
+            if (second.innerHTML < 10) {
+                second.innerHTML = "0" + new Date().getSeconds()
+            }
+            if (minute.innerHTML < 10) {
+                minute.innerHTML = "0" + new Date().getMinutes()
+            }
+            if (hour.innerHTML < 10) {
+                hour.innerHTML = "0" + new Date().getHours()
+            }
+            setTimeout(() => {
+                clock()
+            }, 1000);
+        }
+
+
+        clock()
+    </script>
+    <script src="clock.js"></script>
+</body>
+
+</html>
